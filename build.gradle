@@ -1,9 +1,11 @@
 buildscript {
     repositories {
+        mavenLocal()
         maven { url "https://repo.grails.org/grails/core" }
+        maven { url 'https://repo.gradle.org/gradle/libs-releases' }
     }
     dependencies {
-        classpath "org.grails:grails-gradle-plugin:$grailsGradlePluginVersion"
+        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath "org.grails.plugins:hibernate5:7.2.2"
         classpath "gradle.plugin.com.github.erdi.webdriver-binaries:webdriver-binaries-gradle-plugin:2.6"
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:3.3.4"
@@ -22,6 +24,7 @@ apply plugin:"com.bertramlabs.asset-pipeline"
 apply plugin:"org.grails.grails-gsp"
 
 repositories {
+    mavenLocal()
     maven { url "https://repo.grails.org/grails/core" }
 }
 
@@ -39,10 +42,10 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-logging"
     implementation "org.springframework.boot:spring-boot-starter-validation"
     implementation "org.springframework.boot:spring-boot-autoconfigure"
-    implementation "org.grails:grails-core"
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "org.springframework.boot:spring-boot-starter-tomcat"
-    implementation "org.grails:grails-web-boot"
+    implementation "org.grails:grails-boot"
+    implementation "org.grails:grails-core"
     implementation "org.grails:grails-logging"
     implementation "org.grails:grails-plugin-rest"
     implementation "org.grails:grails-plugin-databinding"
@@ -63,10 +66,8 @@ dependencies {
     runtimeOnly "org.apache.tomcat:tomcat-jdbc"
     runtimeOnly "javax.xml.bind:jaxb-api:2.3.1"
     runtimeOnly "com.bertramlabs.plugins:asset-pipeline-grails:3.3.4"
-    testImplementation "io.micronaut:micronaut-inject-groovy"
-    testImplementation "org.grails:grails-gorm-testing-support"
+    testImplementation "org.grails:grails-test-support"
     testImplementation "org.mockito:mockito-core"
-    testImplementation "org.grails:grails-web-testing-support"
     testImplementation "org.grails.plugins:geb"
     testImplementation "org.seleniumhq.selenium:selenium-remote-driver:4.0.0"
     testImplementation "org.seleniumhq.selenium:selenium-api:4.0.0"

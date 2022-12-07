@@ -25,27 +25,22 @@ class DemoBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryP
     @Override
     void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
         log.info("postProcessBeanDefinitionRegistry")
-//        log.info("GrailsPluginManager Definition: " + registry.getBeanDefinition(GrailsPluginManager.BEAN_NAME))
     }
 
     @Override
     void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         log.info("postProcessBeanFactory")
-        BeanFactory parentBeanFactory = beanFactory.getParentBeanFactory()
-        if (parentBeanFactory instanceof ConfigurableBeanFactory) {
-            ConfigurableBeanFactory configurableBeanFactory = parentBeanFactory
-            log.info("GrailsPluginManager exists? " + configurableBeanFactory.containsSingleton(GrailsPluginManager.BEAN_NAME))
-        }
+        log.info("GrailsPluginManager exists? " + beanFactory.containsSingleton(GrailsPluginManager.BEAN_NAME))
     }
 
     @Override
     int getOrder() {
-        return 0
+        10
     }
 }
 ```
 
-When `grails run-app`, the logs will be below:
+When `grails run-app`, the logs will look like this:
 
 ```
 2022-05-30 17:31:48.520  INFO --- [  restartedMain] .DemoBeanDefinitionRegistryPostProcessor : postProcessBeanFactory

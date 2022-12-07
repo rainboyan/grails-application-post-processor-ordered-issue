@@ -1,19 +1,18 @@
 package org.grails.demo
 
-import grails.boot.GrailsApp
-import grails.boot.config.GrailsAutoConfiguration
+import grails.boot.Grails
 
 import groovy.transform.CompileStatic
 import org.springframework.context.annotation.Bean
 
 @CompileStatic
-class Application extends GrailsAutoConfiguration {
+class Application {
     static void main(String[] args) {
-        GrailsApp.run(Application, args)
+        Grails.run(Application, args)
     }
 
-    @Bean
-    DemoBeanDefinitionRegistryPostProcessor demoBeanDefinitionRegistryPostProcessor() {
-        new DemoBeanDefinitionRegistryPostProcessor()
-    }
+    // @Bean
+    // DemoBeanDefinitionRegistryPostProcessor demoBeanDefinitionRegistryPostProcessor() {
+    //     new DemoBeanDefinitionRegistryPostProcessor()
+    // }
 }

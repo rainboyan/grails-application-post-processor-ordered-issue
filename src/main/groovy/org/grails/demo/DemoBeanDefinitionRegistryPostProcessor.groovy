@@ -3,8 +3,6 @@ package org.grails.demo
 import grails.plugins.GrailsPluginManager
 import groovy.util.logging.Slf4j
 import org.springframework.beans.BeansException
-import org.springframework.beans.factory.BeanFactory
-import org.springframework.beans.factory.config.ConfigurableBeanFactory
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory
 import org.springframework.beans.factory.support.BeanDefinitionRegistry
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor
@@ -21,15 +19,12 @@ class DemoBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryP
     @Override
     void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         log.info("postProcessBeanFactory")
-        BeanFactory parentBeanFactory = beanFactory.getParentBeanFactory()
-        if (parentBeanFactory instanceof ConfigurableBeanFactory) {
-            ConfigurableBeanFactory configurableBeanFactory = parentBeanFactory
-            log.info("GrailsPluginManager exists? " + configurableBeanFactory.containsSingleton(GrailsPluginManager.BEAN_NAME))
-        }
+        log.info("GrailsPluginManager exists? " + beanFactory.containsSingleton(GrailsPluginManager.BEAN_NAME))
     }
 
     @Override
     int getOrder() {
-        return 0
+        10
     }
+
 }

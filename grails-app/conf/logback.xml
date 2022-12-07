@@ -14,4 +14,7 @@
     <root level="info">
         <appender-ref ref="STDOUT" />
     </root>
+    <logger name="org.grails.demo" level="debug" />
+    <logger name="grails.plugins" level="debug" />
+    <logger name="org.grails.plugins" level="debug" />
 </configuration>
